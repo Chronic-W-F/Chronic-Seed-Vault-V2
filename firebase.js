@@ -3,7 +3,7 @@ import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "PASTE_CLASSIC_API_KEY_HERE",
+  apiKey: "AIzaSyDtAKBVp6Hyf2eXv1Wo0YLuuE1hfZ80MgM",
   authDomain: "public-seed-vault-app.firebaseapp.com",
   projectId: "public-seed-vault-app",
   storageBucket: "public-seed-vault-app.appspot.com",
