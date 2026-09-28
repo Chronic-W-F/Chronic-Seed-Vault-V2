@@ -4,6 +4,7 @@ import { useState } from "react";
 
 export default function Home() {
   const [showAddSeeds, setShowAddSeeds] = useState(false);
+
   const [form, setForm] = useState({
     breeder: "",
     strain: "",
@@ -17,6 +18,7 @@ export default function Home() {
 
   function updateField(event) {
     const { name, value } = event.target;
+
     setForm((current) => ({
       ...current,
       [name]: value,
@@ -26,14 +28,10 @@ export default function Home() {
   function handleSubmit(event) {
     event.preventDefault();
 
-    // This is intentionally temporary.
-    // Database saving comes in the next stage.
     console.log("Seed intake draft:", form);
 
     alert(
-      `Draft ready: ${form.strain}${
-        form.breeder ? ` — ${form.breeder}` : ""
-      }`
+      `Draft ready: ${form.breeder ? `${form.breeder} — ` : ""}${form.strain}`
     );
 
     setShowAddSeeds(false);
@@ -43,7 +41,10 @@ export default function Home() {
     <main className="app-shell">
       <header className="topbar">
         <div>
-          <div className="brand-kicker">CHRONIC WORM GENETICS</div>
+          <div className="brand-kicker">
+            CHRONIC WORM GENETICS
+          </div>
+
           <h1>Chronic Seed Vault V2</h1>
         </div>
 
@@ -58,7 +59,9 @@ export default function Home() {
 
       <section className="status-card">
         <div className="eyebrow">V2 FOUNDATION</div>
+
         <h2>Your seed vault</h2>
+
         <p>
           Genetics and physical inventory are kept separate so one genetic
           record can have multiple inventory lots, sources, quantities, and
@@ -67,30 +70,54 @@ export default function Home() {
       </section>
 
       <section className="dashboard-grid">
-        <button className="dashboard-card" type="button">
+        <button
+          className="dashboard-card"
+          type="button"
+        >
           <strong>Genetics</strong>
           <span>0 records</span>
         </button>
 
-        <button className="dashboard-card" type="button">
+        <button
+          className="dashboard-card"
+          type="button"
+        >
           <strong>Inventory Lots</strong>
           <span>0 lots</span>
         </button>
 
-        <button className="dashboard-card" type="button">
+        <button
+          className="dashboard-card"
+          type="button"
+        >
           <strong>Cases</strong>
           <span>0 assigned</span>
         </button>
       </section>
 
       <nav className="bottom-nav">
-        <button className="active" type="button">
+        <button
+          className="active"
+          type="button"
+        >
           Home
         </button>
-        <button type="button">Vault</button>
-        <button type="button">Cases</button>
-        <button type="button">Trade</button>
-        <button type="button">Settings</button>
+
+        <button type="button">
+          Vault
+        </button>
+
+        <button type="button">
+          Cases
+        </button>
+
+        <button type="button">
+          Trade
+        </button>
+
+        <button type="button">
+          Settings
+        </button>
       </nav>
 
       {showAddSeeds && (
@@ -105,7 +132,10 @@ export default function Home() {
           <section className="intake-modal">
             <div className="modal-header">
               <div>
-                <div className="eyebrow">NEW INTAKE</div>
+                <div className="eyebrow">
+                  NEW INTAKE
+                </div>
+
                 <h2>Add Seeds</h2>
               </div>
 
@@ -119,9 +149,24 @@ export default function Home() {
               </button>
             </div>
 
-            <form className="seed-form" onSubmit={handleSubmit}>
+            <form
+              className="seed-form"
+              onSubmit={handleSubmit}
+            >
+              <label>
+                Breeder
+
+                <input
+                  name="breeder"
+                  value={form.breeder}
+                  onChange={updateField}
+                  placeholder="Unknown is allowed"
+                />
+              </label>
+
               <label>
                 Strain Name *
+
                 <input
                   name="strain"
                   value={form.strain}
@@ -132,17 +177,8 @@ export default function Home() {
               </label>
 
               <label>
-                Breeder
-                <input
-                  name="breeder"
-                  value={form.breeder}
-                  onChange={updateField}
-                  placeholder="Unknown is allowed"
-                />
-              </label>
-
-              <label>
                 Lineage
+
                 <input
                   name="lineage"
                   value={form.lineage}
@@ -154,27 +190,45 @@ export default function Home() {
               <div className="form-row">
                 <label>
                   Type
+
                   <select
                     name="type"
                     value={form.type}
                     onChange={updateField}
                   >
-                    <option>Photoperiod</option>
-                    <option>Autoflower</option>
-                    <option>Unknown</option>
+                    <option>
+                      Photoperiod
+                    </option>
+
+                    <option>
+                      Autoflower
+                    </option>
+
+                    <option>
+                      Unknown
+                    </option>
                   </select>
                 </label>
 
                 <label>
                   Sex
+
                   <select
                     name="sex"
                     value={form.sex}
                     onChange={updateField}
                   >
-                    <option>Unknown</option>
-                    <option>Regular</option>
-                    <option>Feminized</option>
+                    <option>
+                      Unknown
+                    </option>
+
+                    <option>
+                      Regular
+                    </option>
+
+                    <option>
+                      Feminized
+                    </option>
                   </select>
                 </label>
               </div>
@@ -182,6 +236,7 @@ export default function Home() {
               <div className="form-row">
                 <label>
                   Generation
+
                   <input
                     name="generation"
                     value={form.generation}
@@ -192,6 +247,7 @@ export default function Home() {
 
                 <label>
                   Quantity
+
                   <input
                     name="quantity"
                     value={form.quantity}
@@ -206,6 +262,7 @@ export default function Home() {
 
               <label>
                 Notes
+
                 <textarea
                   name="notes"
                   value={form.notes}
@@ -224,7 +281,10 @@ export default function Home() {
                   Cancel
                 </button>
 
-                <button className="primary-button" type="submit">
+                <button
+                  className="primary-button"
+                  type="submit"
+                >
                   Continue
                 </button>
               </div>
@@ -234,4 +294,4 @@ export default function Home() {
       )}
     </main>
   );
-                    }
+                      }
